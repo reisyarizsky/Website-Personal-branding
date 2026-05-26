@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lee Heeseung & Reisya - Wedding Website</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="51">
+
+    <!-- ── Opening Overlay ── -->
+    <div id="opening-overlay">
+      <div id="opening-card">
+        <div id="opening-rings">💍</div>
+        <p id="opening-sub">The Wedding of</p>
+        <h1 id="opening-title">Heeseung <span>&</span> Reisya</h1>
+        <p id="opening-date">20 Desember 2026</p>
+        <div id="opening-divider"></div>
+        <p id="opening-msg">Anda diundang untuk hadir di hari istimewa kami</p>
+        <button id="opening-btn" onclick="openWebsite()">
+          <span>♫</span> Buka Undangan
+        </button>
+      </div>
+    </div>
+
+    <style>
+      #opening-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: linear-gradient(135deg, #1a0a00 0%, #2d1500 40%, #1a0a00 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.8s ease, visibility 0.8s ease;
+      }
+      #opening-overlay.hide {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      #opening-card {
+        text-align: center;
+        padding: 48px 40px;
+        max-width: 420px;
+        width: 90%;
+        border: 1px solid rgba(185,155,107,0.35);
+        border-radius: 4px;
+        background: rgba(255,255,255,0.03);
+        backdrop-filter: blur(6px);
+        animation: fadeUp 1s ease forwards;
+      }
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      #opening-rings {
+        font-size: 36px;
+        margin-bottom: 16px;
+        animation: pulse 2s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%,100% { transform: scale(1); }
+        50%      { transform: scale(1.12); }
+      }
+      #opening-sub {
+        color: #b99b6b;
+        letter-spacing: 4px;
+        font-size: 11px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+      }
+      #opening-title {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(2rem, 8vw, 3rem);
+        color: #f5e6c8;
+        margin-bottom: 8px;
+        line-height: 1.2;
+      }
+      #opening-title span { color: #b99b6b; }
+      #opening-date {
+        color: #b99b6b;
+        font-size: 13px;
+        letter-spacing: 2px;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 20px;
+      }
+      #opening-divider {
+        width: 60px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #b99b6b, transparent);
+        margin: 0 auto 20px;
+      }
+      #opening-msg {
+        color: #c8b89a;
+        font-size: 13px;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 28px;
+        line-height: 1.7;
+      }
+      #opening-btn {
+        background: linear-gradient(135deg, #b99b6b, #8a6e3e);
+        color: #fff;
+        border: none;
+        padding: 14px 36px;
+        border-radius: 40px;
+        font-size: 14px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 20px rgba(185,155,107,0.35);
+      }
+      #opening-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 28px rgba(185,155,107,0.55);
+      }
+      #opening-btn span { margin-right: 6px; }
+    </style>
+
+    <script>
+      // Kunci scroll saat overlay aktif
+      document.body.style.overflow = 'hidden';
+
+      function openWebsite() {
+        // Play musik langsung (sudah ada interaksi user)
+        const music = document.getElementById('music');
+        if (music) {
+          music.volume = 0.6;
+          music.play().then(() => {
+            if (typeof setPlaying === 'function') setPlaying(true);
+          }).catch(() => {});
+        }
+        // Tutup overlay
+        const overlay = document.getElementById('opening-overlay');
+        overlay.classList.add('hide');
+        document.body.style.overflow = '';
+        // Hapus dari DOM setelah animasi selesai
+        setTimeout(() => overlay.remove(), 900);
+      }
+    </script>
+
+    <!-- Navbar Start -->
+    <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
+        <a href="index.html" class="navbar-brand d-block d-lg-none">
+            <h1 class="font-secondary text-white mb-n2">Heeseung <span class="text-primary">&</span> Reisya</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto py-0">
+                <a href="#home" class="nav-item nav-link active">Home</a>
+                <a href="#about" class="nav-item nav-link">About</a>
+                <a href="#story" class="nav-item nav-link">Story</a>
+                <a href="#gallery" class="nav-item nav-link">Gallery</a>
+            </div>
+            <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
+                <h1 class="font-secondary text-white mb-n2">Heeseung <span class="text-primary">&</span> Reisya</h1>
+            </a>
+            <div class="navbar-nav mr-auto py-0">
+                <a href="#family" class="nav-item nav-link">Family</a>
+                <a href="#event" class="nav-item nav-link">Acara</a>
+                <a href="#rsvp" class="nav-item nav-link">RSVP</a>
+                <a href="#contact" class="nav-item nav-link">Kontak</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0 mb-5 pb-5" id="home">
+        <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item position-relative active" style="height: 100vh; min-height: 400px;">
+                    <img class="position-absolute w-100 h-100" src="img/wedding reisya.jpeg" style="object-fit: cover;">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h1 class="display-1 font-secondary text-white mt-n3 mb-md-4">Heeseung & Reisya</h1>
+                            <div class="d-inline-block border-top border-bottom border-light py-3 px-4">
+                                <h3 class="text-uppercase font-weight-normal text-white m-0" style="letter-spacing: 2px;">WE'RE GETTING MARRIED</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item position-relative" style="height: 100vh; min-height: 400px;">
+                    <img class="position-absolute w-100 h-100" src="img/wedding r7.jpeg" style="object-fit: cover;">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h1 class="display-1 font-secondary text-white mt-n3 mb-md-4">Heeseung & Reisya</h1>
+                            <div class="d-inline-block border-top border-bottom border-light py-3 px-4">
+                                <h3 class="text-uppercase font-weight-normal text-white m-0" style="letter-spacing: 2px;">WE'RE GETTING MARRIED</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev justify-content-start" href="#header-carousel" data-slide="prev">
+                <div class="btn btn-primary px-0" style="width: 68px; height: 68px;">
+                    <span class="carousel-control-prev-icon mt-3"></span>
+                </div>
+            </a>
+            <a class="carousel-control-next justify-content-end" href="#header-carousel" data-slide="next">
+                <div class="btn btn-primary px-0" style="width: 68px; height: 68px;">
+                    <span class="carousel-control-next-icon mt-3"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+
+    <!-- Video Modal Start -->
+    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>        
+                    <!-- 16:9 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Video Modal End -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5" id="about">
+        <div class="container py-5">
+            <div class="section-title position-relative text-center">
+                <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">About</h6>
+                <h1 class="font-secondary display-4">Heeseung & Reisya</h1>
+                <i class="far fa-heart text-dark"></i>
+            </div>
+            <div class="row m-0 mb-4 mb-md-0 pb-2 pb-md-0">
+                <div class="col-md-6 p-0 text-center text-md-right">
+                    <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-5">
+                        <h3 class="mb-3">15 Oktober 2001</h3>
+                        <p>“Heeseung adalah seseorang yang terlihat kuat dan tenang di luar, tetapi memiliki hati yang begitu hangat di dalamnya. Ia tidak selalu menunjukkan apa yang dirasakannya, namun setiap perhatian kecil yang ia lakukan selalu memiliki makna yang besar. Dengan segala ketulusan dan kasih sayangnya, ia percaya bahwa cinta terbaik adalah ketika dua orang bisa saling memahami tanpa harus banyak menjelaskan.”</p>
+                        <h3 class="font-secondary font-weight-normal text-muted mb-3"><i class="fa fa-male text-primary pr-3"></i>Lee Heeseung</h3>
+                        <div class="position-relative">
+                        
+                            <a class="btn btn-outline-primary btn-square mr-1" href="https://tiktok.com/@enhypen"><i class="fab fa-tiktok"></i></a>
+                            <a class="btn btn-outline-primary btn-square" href="https://instagram.com/h_evva_n"><i class="fab fa-instagram"></i></a>
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 p-0" style="min-height: 400px;">
+                    <img class="position-absolute w-100 h-100" src="img/heseeungokt.jpeg" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="row m-0">
+                <div class="col-md-6 p-0" style="min-height: 400px;">
+                    <img class="position-absolute w-100 h-100" src="img/deiya.jpeg" style="object-fit: cover;">
+                </div>
+                <div class="col-md-6 p-0 text-center text-md-left">
+                    <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-5">
+                        <h3 class="mb-3">01 Agustus 2009</h3>
+                        <p>"Reisya adalah sosok yang tenang dengan caranya sendiri. Ia lebih suka menunjukkan perhatian lewat hal-hal kecil daripada banyak bicara tentang perasaannya. Di balik sikapnya yang santai, Reisya adalah pribadi yang cukup peka, mudah peduli dengan orang lain, dan selalu berusaha jadi tempat nyaman bagi orang-orang terdekatnya.”</p>
+                        <h3 class="font-secondary font-weight-normal text-muted mb-3"><i class="fa fa-female text-primary pr-3"></i>Reisya Rizsky Ibrina</h3>
+                        <div class="position-relative">
+                            
+                            <a class="btn btn-outline-primary btn-square mr-1" href="https://tiktok.com/@iiiyyaa29"><i class="fab fa-tiktok"></i></a>
+                            <a class="btn btn-outline-primary btn-square" href="https://instagram.com/reisyarizkylb"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Story Start -->
+    <div class="container-fluid py-5" id="story">
+        <div class="container pt-5 pb-3">
+            <div class="section-title position-relative text-center">
+                <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Story</h6>
+                <h1 class="font-secondary display-4">Our Love Story</h1>
+                <i class="far fa-heart text-dark"></i>
+            </div>
+            <div class="container timeline position-relative p-0">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-right">
+                        <img class="img-fluid mr-md-3" src="img/first meet.jpeg" alt="">
+                    </div>
+                    <div class="col-md-6 text-center text-md-left">
+                        <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 ml-md-3">
+                            <h4 class="mb-2">First Meet</h4>
+                            <p class="m-0">berawal dari ketidaksengaja. Saat sedang scrolling TikTok, Reisya melihat Lee Heeseung muncul di FYP-nya. Awalnya biasa saja, tapi semakin dilihat semakin sulit diabaikan. Rasa penasaran membuat Reisya mulai mengikuti akun Heeseung, dan tanpa sadar, namanya perlahan menetap di pikirannya. Dari pertemuan sederhana itu, cerita ini dimulai.
+</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-right">
+                        <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 mr-md-3">
+                            <h4 class="mb-2">first Date</h4>
+                            <p class="text-uppercase mb-2">1 Mei 2025</p>
+                            <p class="m-0">Tanggal 1 Mei 2025 menjadi awal perubahan besar bagi Reisya. Di tengah masa yang cukup membingungkan setelah mengakhiri hubungannya, Lee Heeseung hadir dengan sabar tanpa banyak memaksa. Mereka mulai sering bersama, berbagi cerita, tertawa, dan menghabiskan waktu lewat hal-hal sederhana yang perlahan terasa istimewa. Dessert stroberi, hadiah kecil, hingga jepit kupu-kupu yang selalu Heeseung selipkan di rambut Reisya, menjadi kenangan manis yang membuat Reisya percaya bahwa kali ini, ia tidak harus berjalan sendirian.
+
+</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center text-md-left">
+                        <img class="img-fluid ml-md-3" src="img/kita.jpeg" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-right">
+                        <img class="img-fluid mr-md-3" src="img/wd r7.jpeg" alt="">
+                    </div>
+                    <div class="col-md-6 text-center text-md-left">
+                        <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 ml-md-3">
+                            <h4 class="mb-2">Engagement</h4>
+                            <p class="text-uppercase mb-2">1 Agustus 2026</p>
+                            <p class="m-0">Pada tanggal 1 Agustus 2026, tepat di hari ulang tahun Reisya Rizsky Ibrina, Heeseung menjadikan hari itu lebih dari sekadar perayaan ulang tahun.  Di momen sweet seventeen Reisya, Heeseung memilih untuk membawa hubungan mereka ke langkah yang lebih serius. Setelah semua perjalanan, keraguan, dan proses panjang yang mereka lalui bersama, Heeseung ingin memastikan bahwa kali ini Reisya tidak perlu lagi merasa sendirian ataupun ragu untuk melangkah. Tapi Bagi Reisya, menerima keseriusan itu bukan hal yang mudah. Namun Heeseung selalu berhasil meyakinkannya Dan di hari itu, Reisya akhirnya melihat bahwa seseorang yang sejak awal selalu meyakinkannya, memang datang untuk menetap selamanya. 
+
+</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-right">
+                        <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 mr-md-3">
+                            <h4 class="mb-2">Wedding</h4>
+                            <p class="text-uppercase mb-2">20 Desember 2026</p>
+                            <p class="m-0"> Akhirnya, pada 20 Desember 2026, dua hati itu memilih untuk menetap satu sama lain. Setelah melewati banyak proses, keraguan, dan perjalanan yang tidak mudah, cinta membawa Reisya dan Lee Heeseung menuju babak baru di kehidupan mereka. Di bawah indahnya Lake Garda, keduanya memulai kisah baru 
+                                — kali ini, untuk selamanya.
+
+</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center text-md-left">
+                        <img class="img-fluid ml-md-3" src="img/wd aku.jpeg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Story End -->
+
+
+    <!-- Gallery Start -->
+    <div class="container-fluid bg-gallery" id="gallery" style="padding: 120px 0; margin: 90px 0;">
+        <div class="section-title position-relative text-center" style="margin-bottom: 120px;">
+            <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Gallery</h6>
+            <h1 class="font-secondary display-4 text-white">Our Foto</h1>
+            <i class="far fa-heart text-white"></i>
+        </div>
+        <div class="owl-carousel gallery-carousel">
+            <div class="gallery-item">
+                <img class="img-fluid w-100" src="img/wedding r1.jpeg" alt="">
+                <a href="img/wedding r1.jpeg" data-lightbox="gallery">
+                    <i class="fa fa-2x fa-plus text-white"></i>
+                </a>
+            </div>
+            <div class="gallery-item">
+                <img class="img-fluid w-100" src="img/wedding r4.jpeg" alt="">
+                <a href="img/wedding r4.jpeg" data-lightbox="gallery">
+                    <i class="fa fa-2x fa-plus text-white"></i>
+                </a>
+            </div>
+            <div class="gallery-item">
+                <img class="img-fluid w-100" src="img/revisi3.jpeg" alt="">
+                <a href="img/revisi3.jpeg" data-lightbox="gallery">
+                    <i class="fa fa-2x fa-plus text-white"></i>
+                </a>
+            </div>
+            <div class="gallery-item">
+                <img class="img-fluid w-100" src="img/wedding r6.jpeg" alt="">
+                <a href="img/wedding r6.jpeg" data-lightbox="gallery">
+                    <i class="fa fa-2x fa-plus text-white"></i>
+                </a>
+            </div>
+            <div class="gallery-item">
+                <img class="img-fluid w-100" src="img/revisi2.jpeg" alt="">
+                <a href="img/revisi2.jpeg" data-lightbox="gallery">
+                    <i class="fa fa-2x fa-plus text-white"></i>
+                </a>
+            </div>
+            <div class="gallery-item">
+                <img class="img-fluid w-100" src="img/revisi1.jpeg" alt="">
+                <a href="img/revisi1.jpeg" data-lightbox="gallery">
+                    <i class="fa fa-2x fa-plus text-white"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Gallery End -->
+
+
+    <!-- Event Start -->
+    <div class="container-fluid py-5" id="event">
+        <div class="container py-5">
+            <div class="section-title position-relative text-center">
+                <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Event</h6>
+                <h1 class="font-secondary display-4">Our Wedding Event</h1>
+                <i class="far fa-heart text-dark"></i>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <h5 class="font-weight-normal text-muted mb-3 pb-3">Dengan penuh rasa bahagia, kami mengundang Anda untuk hadir di hari spesial kami.
+Kehadiran dan doa terbaik dari Anda akan menjadi kebahagiaan yang sangat berarti bagi kami. ✨</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 border-right border-primary">
+                    <div class="text-center text-md-right mr-md-3 mb-4 mb-md-0">
+                        <img class="img-fluid mb-4" src="img/event1.jpeg" alt="">
+                        <h4 class="mb-3">The Reception</h4>
+                        <p class="mb-2">Lake Garda, Italy</p>
+                        <p class="mb-0">12:00AM - 13:00PM</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-center text-md-left ml-md-3">
+                        <img class="img-fluid mb-4" src="img/event2.jpeg" alt="">
+                        <h4 class="mb-3">Wedding Party</h4>
+                        <p class="mb-2">Lake Garda, Italy</p>
+                        <p class="mb-0">12:00AM - 13:00PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Event End -->
+
+
+    <!-- Friends & Family Start -->
+    <div class="container-fluid py-5" id="family">
+        <div class="container pt-5 pb-3">
+            <div class="section-title position-relative text-center">
+                <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Friends</h6>
+                <h1 class="font-secondary display-4">Groomsmen & Bridesmaid</h1>
+                <i class="far fa-heart text-dark"></i>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center mb-2">
+                    <ul class="list-inline mb-4" id="portfolio-flters">
+                        <li class="btn btn-outline-primary font-weight-bold m-1 py-2 px-4" data-filter=".first">Groomsmen</li>
+                        <li class="btn btn-outline-primary font-weight-bold m-1 py-2 px-4" data-filter=".second">Bridesmaid</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row portfolio-container">
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+                    <div class="position-relative mb-2">
+                        <img class="img-fluid w-100" src="img/sunoo2.jpeg" alt="">
+                        <div class="bg-secondary text-center p-4">
+                            <h4 class="mb-3">Sunoo</h4>
+                            <p class="text-uppercase">Best Friend</p>
+                            <div class="d-inline-block">
+                             <a class="btn btn-outline-primary btn-square mr-1" href="https://tiktok.com/@enhypen"><i class="fab fa-tiktok"></i></a>
+                             <a class="btn btn-outline-primary btn-square" href="https://instagram.com/enhypen"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
+                    <div class="position-relative mb-2">
+                        <img class="img-fluid w-100" src="img/bd1.jpeg" alt="">
+                        <div class="bg-secondary text-center p-4">
+                            <h4 class="mb-3">Fayza Kulla Azmina</h4>
+                            <p class="text-uppercase">Best Friend</p>
+                            <div class="d-inline-block">
+                                <a class="btn btn-outline-primary btn-square mr-1" href="https://tiktok.com/@oneday.threeautumn"><i class="fab fa-tiktok"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://instagram.com/fay.zamn"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+                    <div class="position-relative mb-2">
+                        <img class="img-fluid w-100" src="img/jay2.jpeg" alt="">
+                        <div class="bg-secondary text-center p-4">
+                            <h4 class="mb-3">Jay</h4>
+                            <p class="text-uppercase">Best Friend</p>
+                            <div class="d-inline-block">
+                                <a class="btn btn-outline-primary btn-square mr-1" href="https://tiktok.com/@enhypen"><i class="fab fa-tiktok"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://instagram.com/enhypen"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
+                    <div class="position-relative mb-2">
+                        <img class="img-fluid w-100" src="img/bd2.jpeg" alt="">
+                        <div class="bg-secondary text-center p-4">
+                            <h4 class="mb-3">Davina Mutia Shalsabilla</h4>
+                            <p class="text-uppercase">Best Friend</p>
+                            <div class="d-inline-block">
+                                <a class="btn btn-outline-primary btn-square mr-1" href="https://tiktok.com/@shall3_0"><i class="fab fa-tiktok"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://instagram.com/dvnamutshl_"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+                    <div class="position-relative mb-2">
+                        <img class="img-fluid w-100" src="img/niki2.jpeg" alt="">
+                        <div class="bg-secondary text-center p-4">
+                            <h4 class="mb-3">Ni-ki</h4>
+                            <p class="text-uppercase">Best Friend</p>
+                            <div class="d-inline-block">
+                                <a class="btn btn-outline-primary btn-square mr-1" href="https://tiktok.com/@enhypen"><i class="fab fa-tiktok"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://instagram.com/enhypen"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
+                    <div class="position-relative mb-2">
+                        <img class="img-fluid w-100" src="img/bd3.jpeg" alt="">
+                        <div class="bg-secondary text-center p-4">
+                            <h4 class="mb-3">Dailamy Nissa R</h4>
+                            <p class="text-uppercase">Best Friend</p>
+                            <div class="d-inline-block">
+                                <a class="btn btn-outline-primary btn-square mr-1" href="https://tiktok.com/@nisawsott"><i class="fab fa-tiktok"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="https://instagram.com/nisssooottttt"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Friends & Family End -->
+
+
+    <!-- RSVP Start -->
+    <div class="container-fluid py-5" id="rsvp">
+        <div class="container py-5">
+            <div class="section-title position-relative text-center">
+                <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">RSVP</h6>
+                <h1 class="font-secondary display-4">Join Our Party</h1>
+                <i class="far fa-heart text-dark"></i>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center">
+                        <form action="https://formspree.io/f/mkoevdkv" method="POST"></form>
+                            <div class="form-row">
+                                <div class="form-group col-sm-6">
+                                    <input type="text" class="form-control bg-secondary border-0 py-4 px-3" placeholder="Nama Kamu"/>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <input type="email" class="form-control bg-secondary border-0 py-4 px-3" placeholder="Email Kamu"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-sm-6">
+                                    <select class="form-control bg-secondary border-0" style="height: 52px;">
+                                        <option>jumlah tamu</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <select class="form-control bg-secondary border-0" style="height: 52px;">
+                                        <option>Saya Sedang Menghadiri</option>
+                                        <option>Semua Acara</option>
+                                        <option>Pesta Pernikahan</option>
+                                        <option>Tidak Hadir</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control bg-secondary border-0 py-2 px-3" rows="5" placeholder="Ucapan & Doa" required="required"></textarea>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary font-weight-bold py-3 px-5" type="submit">Kirim</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- RSVP End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white py-5" id="contact" style="margin-top: 90px;">
+        <div class="container text-center py-5">
+            <div class="section-title position-relative text-center">
+                <h1 class="font-secondary display-3 text-white">Thank You</h1>
+                <i class="far fa-heart text-white"></i>
+            </div>
+            <div class="d-flex justify-content-center mb-4">
+                <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="https://WhatsApp.com/6281573557668"><i class="fab fa-whatsapp"></i></a>
+                <a class="btn btn-outline-primary btn-square mr-1" href="https://tiktok.com/@iiiyyaa29"><i class="fab fa-tiktok"></i></a>
+                <a class="btn btn-lg btn-outline-light btn-lg-square" href="https://instagram.com/reisyarizkylb"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="d-flex justify-content-center py-2">
+                <p class="text-white" href="#">reisyarizsky@gmail.com</p>
+                <span class="px-3">|</span>
+                <p class="text-white" href="#">081573557668</p>
+            </div>
+            <p class="m-0">&copy; <a class="text-primary" href="#">KABAR BAHAGIANYA KITA NIKAH, KABAR BURUKNYA "INI ORG KNP CB?"</a>. Designed by <a class="text-primary" href="https://htmlcodex.com">HTML Codex</a>
+            </p>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- MUSIC -->
+  <audio id="music" loop>
+    <source src="ENHYPEN 'SHOUT OUT' (Color Coded Lyrics)  ShadowByYoongi.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Music Button -->
+  <div id="music-player">
+    <button id="music-btn" onclick="toggleMusic()" title="Play / Pause Music">
+      <span id="music-icon">♫</span>
+    </button>
+    <span id="music-label">♪ Playing</span>
+  </div>
+
+  <style>
+    /* ── Music Player ── */
+    #music-player {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #music-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #b99b6b;
+      background: rgba(0, 0, 0, 0.65);
+      color: #b99b6b;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: transform 0.2s, background 0.2s;
+      outline: none;
+    }
+
+    #music-btn:hover {
+      background: rgba(185, 155, 107, 0.25);
+      transform: scale(1.1);
+    }
+
+    #music-icon {
+      display: inline-block;
+      transition: opacity 0.3s;
+    }
+
+    #music-icon.spinning {
+      animation: spin-note 2s linear infinite;
+    }
+
+    @keyframes spin-note {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #music-label {
+      background: rgba(0,0,0,0.55);
+      color: #e8d5b0;
+      font-size: 11px;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(185,155,107,0.4);
+      white-space: nowrap;
+      transition: opacity 0.3s;
+    }
+  </style>
+
+  <script>
+    // ── MUSIC AUTOPLAY WITH FALLBACK ──
+    const music     = document.getElementById("music");
+    const btn       = document.getElementById("music-btn");
+    const icon      = document.getElementById("music-icon");
+    const label     = document.getElementById("music-label");
+    let   isPlaying = false;
+
+    function setPlaying(state) {
+      isPlaying = state;
+      if (state) {
+        icon.classList.add("spinning");
+        label.textContent = "♪ Playing";
+        label.style.opacity = "1";
+      } else {
+        icon.classList.remove("spinning");
+        label.textContent = "⏸ Paused";
+        label.style.opacity = "0.7";
+      }
+    }
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play().then(() => setPlaying(true)).catch(() => {});
+      } else {
+        music.pause();
+        setPlaying(false);
+      }
+    }
+
+    // Autoplay: coba langsung, fallback ke klik pertama user
+    function tryAutoplay() {
+      music.volume = 0.6;
+      music.play()
+        .then(() => setPlaying(true))
+        .catch(() => {
+          // Browser block autoplay — tunggu interaksi user pertama
+          setPlaying(false);
+          label.textContent = "♪ Tap to Play";
+          const unlock = () => {
+            music.play().then(() => setPlaying(true)).catch(() => {});
+            document.removeEventListener("click", unlock);
+            document.removeEventListener("touchstart", unlock);
+          };
+          document.addEventListener("click", unlock, { once: true });
+          document.addEventListener("touchstart", unlock, { once: true });
+        });
+    }
+
+    // Autoplay dihandle oleh overlay opening button
+  </script>
+
+
+    <!-- Scroll to Bottom -->
+    <i class="fa fa-2x fa-angle-down text-white scroll-to-bottom"></i>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-outline-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
